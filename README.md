@@ -1,3 +1,4 @@
+
 Komande za pokretanje aplikacije
 1. mvn clean package
 2. Pre komande   docker-compose up --build 
