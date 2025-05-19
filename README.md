@@ -18,3 +18,4 @@ Json parametri:
   "toDate": "2018-04-30"
 }
 
+Sto se tice CSV fajlova, za konkretan zadatak potrebne su kolone date i close pa sam insertovao samo njih. 
