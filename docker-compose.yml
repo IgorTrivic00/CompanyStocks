@@ -1,0 +1,32 @@
+services:
+  mysql:
+    image: mysql:8
+    container_name: mds-db
+    environment:
+      MYSQL_DATABASE: MDS-Zadatak
+      MYSQL_USER: springstudent
+      MYSQL_PASSWORD: springstudent
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+
+  app:
+    build:
+      context: .
+      dockerfile: DockerFile
+    container_name: mds-stock-application
+    ports:
+      - "8081:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/MDS-Zadatak?serverTimezone=Europe/Belgrade
+      SPRING_DATASOURCE_USERNAME: springstudent
+      SPRING_DATASOURCE_PASSWORD: springstudent
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - mysql
+    restart: always
+
+
